@@ -30,9 +30,10 @@ if (!$qry || $qry->num_rows == 0) {
 
 $row = $qry->fetch_assoc();
 
+$stripe_secret_key = '';
+$stripe_publishable_key = '';
 // Stripe Test Keys (replace with your own keys!)
-$stripe_secret_key = $row[""];
-$stripe_publishable_key = $row[""];
+
 // Calculate amount in cents
 $amount = isset($row['facility_price']) ? intval($row['facility_price'] * 100) : 5000;
 
@@ -188,7 +189,7 @@ $client_secret = $paymentIntent['client_secret'];
       paymentMessage.textContent = error.message;
     } else if (paymentIntent && paymentIntent.status === 'succeeded') {
         console.log("Posting payment update...");
-$.post('http://localhost/scbs/classes/Master.php?f=update_payment_status', {
+$.post('http://localhost:8080/scbs/classes/Master.php?f=update_payment_status', {
         booking_id: <?= $booking_id ?>,
         payment_status: 'done',
         first_name: document.getElementById('first-name').value,
@@ -203,7 +204,7 @@ $.post('http://localhost/scbs/classes/Master.php?f=update_payment_status', {
       paymentMessage.textContent = 'Payment succeeded!';
           // Redirect after 2 seconds
           setTimeout(() => {
-            window.location.href = 'http://localhost/scbs/?p=booking_list';
+            window.location.href = 'http://localhost:8080/scbs/?p=booking_list';
           }, 2000);
         } else {
           alert('Failed to update payment status.');
