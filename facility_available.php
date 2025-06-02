@@ -16,11 +16,19 @@
     }
  </style>
  <!-- Header-->
- <header class="bg-dark py-5" id="main-header">
+ <header class="bg-light py-5" id="main-header">
     <div class="container h-100 d-flex align-items-center justify-content-center w-100">
         <div class="text-center text-white w-100">
             <h1 class="display-4 fw-bolder">Available Facilities</h1>
-            <!-- <p class="lead fw-normal text-white-50 mb-0">We will take care of your vehicle</p> -->
+             <p class="lead fw-normal text-white-50 mb-0">Book available court for your sports week </p> 
+              <div class="form-group">
+                <div class="input-group mb-3 ">
+                    <input type="search" id="search" class="form-control py-4 " placeholder="Search Here" aria-label="Search Here" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-warning" id="basic-addon2"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+                </div>
         </div>
     </div>
 </header>
@@ -29,14 +37,9 @@
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row">
             <div class="col-md-12">
-                <div class="form-group">
-                <div class="input-group mb-3">
-                    <input type="search" id="search" class="form-control" placeholder="Search Here" aria-label="Search Here" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-primary" id="basic-addon2"><i class="fa fa-search"></i></span>
-                    </div>
-                </div>
-                </div>
+               <div class="pb-5">
+                 <h2>Available Facilities</h2>
+               </div>
                 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-2" id="facility_list">
                     <?php 
                     $facilities = $conn->query("SELECT f.*, c.name as category FROM `facility_list` f inner join category_list c on f.category_id = c.id where f.delete_flag = 0  order by f.`facility_code`");

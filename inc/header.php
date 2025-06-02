@@ -52,7 +52,8 @@
     body {
         height: 100%;
         width: 100%;
-        font-family: Apple Chancery, cursive;
+        font-family: "Lato", sans-serif;
+        font-size:18px;
     }
     #main-header{
         position:relative;

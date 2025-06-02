@@ -2,7 +2,7 @@
  <header class="bg-dark py-5" id="main-header">
     <div class="container h-100 d-flex align-items-center justify-content-center w-100">
         <div class="text-center text-white w-100">
-            <h1 class="display-4 fw-bolder mx-5"><?php echo $_settings->info('name') ?></h1>
+            <h1 class="display-5 fw-bolder mx-5"><?php echo $_settings->info('name') ?></h1>
             <div class="col-auto mt-4">
                 <!-- <a class="btn btn-warning btn-lg rounded-0" href="./?p=booking">Book Now</a> -->
             </div>
@@ -12,11 +12,16 @@
 <!-- Section-->
 <section class="py-5">
     <div class="container">
-        <div class="card shadow card-outline card-primary rounded-0">
-            <div class="card-body">
-                <?php include './welcome.html' ?>
-            </div>
-        </div>
+
+    <div class="suhehad pb-3">
+        <h3 >About us</h3>
+    </div>
+    <p>
+        The application allows the said business management to provide their clients or possible client an automated and online platform where they can explore their facilities that are for rent. The possible clients can book their desired facility or facilities if it is available on the date they wanted. This application has a simple and pleasant user interface. This project contains user-friendly features and functionalities.
+    </p>
+
+    
+         <?php include './welcome.html' ?>
     </div>
 </section>
 <script>
@@ -51,9 +56,9 @@
 
     })
     $(document).scroll(function() { 
-        $('#topNavBar').removeClass('bg-transparent navbar-light navbar-dark bg-gradient-light text-light')
+        $('#topNavBar').removeClass(' navbar-light navbar-light bg-gradient-light text-dark')
         if($(window).scrollTop() === 0) {
-           $('#topNavBar').addClass('navbar-dark bg-transparent text-light')
+           $('#topNavBar').addClass('navbar-light text-dark')
         }else{
            $('#topNavBar').addClass('navbar-light bg-gradient-light ')
         }
