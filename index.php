@@ -75,6 +75,23 @@
       </div>
     </div>
   </div>
+<div class="modal fade my_modal" id="my_modal" role="dialog" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered rounded-0" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal Title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Content loaded dynamically via AJAX -->
+      </div>
+      <!-- No modal-footer here since you don't want buttons -->
+    </div>
+  </div>
+</div>
+  
 
 </body>
 </html>

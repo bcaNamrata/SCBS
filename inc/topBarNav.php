@@ -6,8 +6,8 @@
     object-position: center center;
 }
 </style>
-<nav class="navbar navbar-expand-lg navbar-light bg-gradient-light fixed-top" id="topNavBar">
-            <div class="container px-4 px-lg-5 ">
+<nav class="navbar navbar-expand-lg  bg-gradient-light fixed-top pt-3 pb-3" id="topNavBar" >
+            <div class="container-fluid px-4 px-lg-5 "> 
                 <button class="navbar-toggler btn btn-sm" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <a class="navbar-brand" href="./">
                 <img src="<?php echo validate_image($_settings->info('logo')) ?>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
@@ -22,8 +22,8 @@
                     </div>
                   </div>
                 </form> -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav  me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link <?= isset($page) && $page == 'home'? "active" : '' ?>" aria-current="page" href="./">Home</a></li>
                         <li class="nav-item"><a class="nav-link <?= isset($page) && $page == 'facility_available'? "active" : '' ?>" href="./?p=facility_available">Facilities</a></li>
                         <li class="nav-item"><a class="nav-link <?= isset($page) && $page == 'about'? "active" : '' ?>" href="./?p=about">About Us</a></li>
@@ -52,7 +52,7 @@
                   <?php endif; ?>
                 </div>
             </div>
-        </nav>
+</nav>
 <script>
   $(function(){
     $('#login-btn').click(function(){

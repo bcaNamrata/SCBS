@@ -7,7 +7,7 @@ class DBConnection {
     public $conn;
 
     public function __construct() {
-        $this->conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+        $this->conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
 
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
