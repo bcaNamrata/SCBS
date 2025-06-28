@@ -13,6 +13,7 @@ $qry = $conn->query("
     SELECT 
         b.ref_code, 
         c.firstname, 
+        c.email,          -- add this line
         f.name as facility_name,
         a.price as facility_price,
         f.id as facility_id
@@ -22,6 +23,7 @@ $qry = $conn->query("
     LEFT JOIN amount a ON f.id = a.facility_id
     WHERE b.id = {$booking_id}
 ");
+
 
 if (!$qry || $qry->num_rows == 0) {
     echo "<div class='alert alert-danger'>Booking not found.</div>";
@@ -111,10 +113,11 @@ $client_secret = $paymentIntent['client_secret'];
     <label for="last-name">Last Name</label>
     <input id="last-name" name="last_name" type="text" class="form-control" placeholder="Last Name" required>
   </div>
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input id="email" name="email" type="email" class="form-control" placeholder="Email Address" required>
-  </div>
+<div class="form-group">
+  <label for="email">Email Address</label>
+  <input id="email" name="email" type="email" class="form-control" 
+         value="<?= htmlspecialchars($row['email']) ?>" readonly>
+</div>
 
   <div class="form-group">
     <label for="card-element">Credit Card Number</label>
