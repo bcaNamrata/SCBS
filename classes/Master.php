@@ -393,9 +393,21 @@ function update_payment_status(): bool|string {
     $last_name = $conn->real_escape_string($_POST['last_name'] ?? '');
     $email = $conn->real_escape_string($_POST['email'] ?? '');
 
-    // Insert payment record
-    $sql = "INSERT INTO payment (booking_id, status, first_name, last_name, email) 
-            VALUES ('{$booking_id}', '{$payment_status}', '{$first_name}', '{$last_name}', '{$email}')";
+    // 1. Get client id from client_list based on email
+    $clientId = null;
+    $qry = $conn->query("SELECT id FROM client_list WHERE email = '{$email}' LIMIT 1");
+    if ($qry && $qry->num_rows > 0) {
+        $row = $qry->fetch_assoc();
+        $clientId = intval($row['id']);
+    } else {
+        // Client not found - optional: handle or return error
+        $resp = ['status' => 'failed', 'error' => 'Client not found for the given email'];
+        return json_encode($resp);
+    }
+
+    // 2. Insert payment record with clientId
+    $sql = "INSERT INTO payment (booking_id, status, first_name, last_name, email, clientId) 
+            VALUES ('{$booking_id}', '{$payment_status}', '{$first_name}', '{$last_name}', '{$email}', '{$clientId}')";
 
     $insert = $conn->query($sql);
 
@@ -418,6 +430,7 @@ function update_payment_status(): bool|string {
 
     return json_encode($resp);
 }
+
 
 
 
