@@ -1,0 +1,18 @@
+# Python virtual environment
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# VSCode settings
+.vscode/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
