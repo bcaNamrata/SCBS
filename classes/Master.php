@@ -383,8 +383,7 @@ function update_payment_status(): bool|string {
     global $conn;
 
     if (empty($_POST['booking_id'])) {
-        $resp = ['status' => 'failed', 'error' => 'Booking ID is required'];
-        return json_encode($resp);
+        return json_encode(['status' => 'failed', 'error' => 'Booking ID is required']);
     }
 
     $booking_id = intval($_POST['booking_id']);
@@ -400,19 +399,16 @@ function update_payment_status(): bool|string {
         $row = $qry->fetch_assoc();
         $clientId = intval($row['id']);
     } else {
-        // Client not found - optional: handle or return error
-        $resp = ['status' => 'failed', 'error' => 'Client not found for the given email'];
-        return json_encode($resp);
+        return json_encode(['status' => 'failed', 'error' => 'Client not found for the given email']);
     }
 
-    // 2. Insert payment record with clientId
+    // 2. Insert payment record
     $sql = "INSERT INTO payment (booking_id, status, first_name, last_name, email, clientId) 
             VALUES ('{$booking_id}', '{$payment_status}', '{$first_name}', '{$last_name}', '{$email}', '{$clientId}')";
-
     $insert = $conn->query($sql);
 
     if ($insert) {
-        // If insert successful, update booking status to paid (2)
+        // 3. Update booking status
         $status_paid = 2;
         $stmt2 = $conn->prepare("UPDATE booking_list SET status = ? WHERE id = ?");
         $stmt2->bind_param("ii", $status_paid, $booking_id);
@@ -420,17 +416,24 @@ function update_payment_status(): bool|string {
         $stmt2->close();
 
         if ($booking_updated) {
-            $resp = ['status' => 'success'];
+            // 4. Get total payment count for this email
+            $count_result = $conn->query("SELECT COUNT(*) as total FROM payment WHERE email = '{$email}'");
+            if ($count_result) {
+                $count_data = $count_result->fetch_assoc();
+                $total_payments = intval($count_data['total']);
+
+                // 5. Update day_of_visit in client_list
+                $conn->query("UPDATE client_list SET day_of_visit = '{$total_payments}' WHERE id = '{$clientId}'");
+            }
+
+            return json_encode(['status' => 'success']);
         } else {
-            $resp = ['status' => 'failed', 'error' => 'Failed to update booking status'];
+            return json_encode(['status' => 'failed', 'error' => 'Failed to update booking status']);
         }
     } else {
-        $resp = ['status' => 'failed', 'error' => $conn->error];
+        return json_encode(['status' => 'failed', 'error' => $conn->error]);
     }
-
-    return json_encode($resp);
 }
-
 
 
 
