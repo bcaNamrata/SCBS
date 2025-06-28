@@ -33,8 +33,8 @@ if (!$qry || $qry->num_rows == 0) {
 $row = $qry->fetch_assoc();
 
 // Stripe Test Keys (replace with your own keys!)
-$stripe_secret_key = 'sk_test_51RVF22H0nAEsUoBnk3MuXB2UMNmnZzYXjEcwZFzdhOVbqfIa1i8RpKXSw97IEnfAAncNjEqT4cFWqWHCPaP21WbD000nliYfZf';
-$stripe_publishable_key = 'pk_test_51RVF22H0nAEsUoBnlMRMtfuqM6UCNNttIGCcwAAeXnIDBd3Yd1pssM3kEgerSJqUxpdFmi1SRmNXaJRvG9YH4T8X00rCz1LWxp';
+$stripe_secret_key = 'sk_test_51Rf0u3B2uHZ1nA5D5Dm2FuDc288E1oQz9zryRjsBjPNI51vmJiintOThvhzTLjimyIndYA6O0tuzCmIVunvRA0zl00AOAlOjZk';
+$stripe_publishable_key = 'pk_test_51Rf0u3B2uHZ1nA5DJ73Mu33EkloUrTKkEW8Y0kW3OJAYbasaC1XC2minEVE43wqo1iTjfh0w0v87PUhm90vrMhWc00ZxT6ykDV';
 
 // Calculate amount in cents
 $amount = isset($row['facility_price']) ? intval($row['facility_price'] * 100) : 5000;
