@@ -86,7 +86,7 @@ if ($client_id && $login_type == 2) {
 
             if (incompleteData) {
                 alert("Your profile information is incomplete. Please update your occupation, player level, and date of birth.");
-                window.location.href = "http://localhost/scbs/?p=manage_account";
+                window.location.href = "http://localhost:8080/scbs/?p=manage_account";
                 return;
             }
 
